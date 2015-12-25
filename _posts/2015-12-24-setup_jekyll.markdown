@@ -2,6 +2,8 @@
 layout: post
 title:  "ubuntu14.04下配置jekyll"
 date:   2015-12-24 21:26
+categories: jekyll使用
+tags:    jekyll
 ---
 
 ### 升级ruby和gem版本,安装nodejs
