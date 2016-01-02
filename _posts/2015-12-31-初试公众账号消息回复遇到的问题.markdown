@@ -1,0 +1,33 @@
+---
+layout: post
+title:  "初试公众账号消息回复遇到的问题"
+date:   2015-12-31 12:37
+categories: django
+tags:   django开发 微信开发
+---
+
+#### 1.记得先在微信公众平台上启用服务器配置
+成功接入微信公众号之后, 准备开始测试消息回复功能, 写了几行基本的代码, 然后给微信公众号上发消息, 后台服务器连个请求都没有, 搞了半天还没启用服务器配置.
+
+#### 2.关于django csrf保护
+在进行测试公众号消息回复的时候, 服务器显示了这个错误`Forbidden (CSRF cookie not set.)`. django为防止CSRF跨站请求伪造, 有一个csrf\_token保护机制, django在进行网站开发的时候, 要求template的post form表单都要使用csrf\_token标签. 而微信向我们之前配置的url发送POST请求, 没有csrf\_token, 所以才会出现这个情况, 解决方法就是用修饰器csrf\_exempt, 对view中的函数进行修饰, 关闭csrf保护.
+{% highlight python %}
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def index(request):
+    return HttpResponse()
+{% endhighlight %}
+
+#### 3.消息回复格式
+微信公众平台给服务器发送的POST请求里的数据是xml格式的, 在后台服务器需要解析xml, 给微信服务器返回数据时, 要严格按照微信公众平台文档中给出的[消息回复的xml格式][消息回复的xml格式], 尤其要注意在生成要返回的xml的时候, 不要搞错, 不然消息会无法正常返回.
+
+
+
+
+[消息回复的xml格式]:    http://mp.weixin.qq.com/wiki/1/6239b44c206cab9145b1d52c67e6c551.html#.E5.9B.9E.E5.A4.8D.E6.96.87.E6.9C.AC.E6.B6.88.E6.81.AF
+![文本消息参数][文本消息参数]
+
+
+
+<!-- [文本消息参数]: http://7xpnxa.com1.z0.glb.clouddn.com/%E6%96%87%E6%9C%AC%E6%B6%88%E6%81%AF%E5%8F%82%E6%95%B0.png -->
