@@ -1,15 +1,33 @@
 ---
-layout: default
+layout: home
 ---
 
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">Posts</div>
+            <div class="panel-body">
+                <div class="list-group h4">
+                    {% for post in site.posts %}
+                    <ul class="list-group-item">
+                        <span class="badge list-group-item-success"> {{ post.date | date: "%Y年%m月%d日" }} </span>
+                    <a href="{{ post.url | prepend: site.baseurl }}">
+                        {{ post.title }}
+                    </a> 
+                </ul>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!--
 <div class="home">
-
-  <h1 class="page-heading">Posts</h1>
-
   <ul class="post-list">
     {% for post in site.posts %}
       <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <span class="post-meta">{{ post.date | date: "%Y年%m月%d日" }}</span>
 
         <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
@@ -18,6 +36,7 @@ layout: default
     {% endfor %}
   </ul>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
 </div>
+-->
+  <!-- <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p> -->
+

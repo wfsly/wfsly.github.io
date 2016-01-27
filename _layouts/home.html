@@ -1,0 +1,24 @@
+<r!DOCTYPE html>
+<html lang="zh-CN">
+    {% include head.html %}
+
+    <body>
+
+        {% include header.html %}
+
+        <div class="container">
+            <div class="row">
+                <div id="page-container">
+                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-md-offset-2">
+                        {{ content }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {% include footer.html %}
+
+    </body>
+
+</html>
