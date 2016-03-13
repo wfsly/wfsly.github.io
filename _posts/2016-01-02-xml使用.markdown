@@ -1,0 +1,34 @@
+---
+layout: post
+title:  "xml使用(持续更新)"
+date:   2016-01-02 10:50
+categories: django weChat
+tags:   django开发 微信开发 xml
+---
+
+微信向服务器发送的POST请求中的数据是xml格式, 所以在后台服务器需要先解析xml数据, 然后再进行相应的操作. 
+
+python自带的[xml处理模块][xml processing modules]有:
+
+* `xml.etree.ElementTree`: the ElementTree API, a simple and lightweight XML processor
+* `xml.dom`: the DOM API definition
+* `xml.dom.minidom`: a minimal DOM implementation
+* `xml.dom.pulldom`: support for building partial DOM trees
+* `xml.sax`: SAX2 base classes and convenience functions
+* `xml.parsers.expat`: the Expat parser binding
+
+第一次接触xml, 所以我先从ElementTree来进行xml解析. 要使用ElementTree, 需要`import xml.etree.ElementTree as ET` or `from xml.etree import ElementTree as ET`
+
+在解析xml数据内容之前, 需要先将xml数据读取到ElementTree对象中, 有两种方式: 从xml文件读取; 从字符串中读取. 由于从django的request.body中获取到的POST数据是字符串, 所以主要讲使用字符串相关的内容.
+
+django中, request的POST请求所携带的数据在request.body中, 只需要将body中的内容保存到变量中即可.
+
+{% highlight python %}
+from xml.etree import ElementTree as ET
+def response_user_msg(request):
+    if request.method == 'POST':
+    xml = request.body
+    user_msg = ET.fromstring()
+{% endhighlight %}
+
+[xml processing modules]:   https://docs.python.org/2/library/xml.html
