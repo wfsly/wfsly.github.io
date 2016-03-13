@@ -38,5 +38,4 @@ dump函数将data中的json数据写入到文件中
 
 
 
-[reference]:http://blog.chinaunix.net/uid-9525959-id-3074355.html
 [json.doc]: https://docs.python.org/2/library/json.html#module-json
