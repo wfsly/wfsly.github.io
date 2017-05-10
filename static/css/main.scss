@@ -66,23 +66,35 @@ $on-laptop:        800px;
 ;
 
 //Jax
-div#body {
+// div#body {
+//     background: url("/static/images/background.jpg");
+//     background-size: cover;
+//     background-position: center;
+// }
+body {
     background: url("/static/images/background.jpg");
     background-size: cover;
     background-position: center;
+    // 使背景图片保持不动
+    background-attachment: fixed;
+    // 图片是否平铺
+    background-repeat: no-repeat;
 }
 div.test {
     background: url("/static/images/background.jpg");
     background-size: cover;
     background-position: center;
 }
-div.page-content {
-    background: url("/static/images/background.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-div.panel-body {
+// div.page-content {
+//     background: url("/static/images/background.jpg");
+//     background-size: cover;
+//     background-position: center;
+//     background-attachment: fixed;
+//     background-color: #E8E8FF;
+// }
+div.panel {
     background-color: #E8E8FF;
 }
-// Jax end
+
+
+//Jax end
