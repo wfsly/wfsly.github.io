@@ -7,16 +7,26 @@
 
 // Our variables
 $base-font-family: Helvetica, Arial, sans-serif;
-$base-font-size:   16px;
+$base-font-size:   18px;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
 
 $spacing-unit:     30px;
 
 $text-color:       #111;
-$background-color: #fdfdfd;
+// $background-color: #fdfdfd;
+
 //Jax
-//$background-color: #C7DECC;
+// $background-color: #C7DECC;
+// $background-color: #CCEBCC;
+$background-color: #E8E8FF;
+// $background-color: #FBFBEA;
+// $background-color: #D5F3F4;
+// $background-color: #D7FFF0;
+// $background-color: #F0DAD2;
+// $background-color: #F2F1D7;
+
+// Jax end
 
 
 $brand-color:      #2a7ae2;
@@ -58,5 +68,21 @@ $on-laptop:        800px;
 //Jax
 div#body {
     background: url("/static/images/background.jpg");
-    background-position:center;
+    background-size: cover;
+    background-position: center;
 }
+div.test {
+    background: url("/static/images/background.jpg");
+    background-size: cover;
+    background-position: center;
+}
+div.page-content {
+    background: url("/static/images/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+div.panel-body {
+    background-color: #E8E8FF;
+}
+// Jax end
