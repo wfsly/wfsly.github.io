@@ -1,0 +1,10 @@
+---
+layout: post
+title: git暂存当前代码
+date: 2017-09-19 05:52:36
+categories: git
+---
+
+在开发的时候，你是否有过这种情况：正在写着代码，但是需要合并一下别人的分支或者pull新的代码
+
+`git stash`

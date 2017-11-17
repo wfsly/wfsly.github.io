@@ -1,0 +1,29 @@
+---
+layout: post
+title: 爬虫-网页汉字编码问题
+date: 2017-09-26 03:26:32
+categories: spider
+---
+
+利用requests库爬取中文网站的时候，总是会遇到中文编码的问题, 引起此情况的一个原因是get方法获取的返回内容的encoding属性和网站的charset不一致。
+
+遇到此类问题，首先去查看网页源码，在`<head>`标签里去查找`<meta>`标签里时候有`charset`设置，eg:
+
+```
+<head>
+    <meta charset="utf-8">
+</head>
+```
+
+如果有，在利用`requests`的get方法获取到response后，对response.encoding进行设置
+
+```
+res = requests.get(url)
+res.encoding = 'utf-8'
+```
+
+之后，print就可以愉快的显示中文了
+
+文章参考自[url][url]
+
+[url]:http://www.cnblogs.com/yestreenstars/p/5583539.html

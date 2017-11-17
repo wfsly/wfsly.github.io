@@ -1,0 +1,27 @@
+---
+layout: post
+title:  "git指令设置alias"
+categories: git
+tags:   git alias
+---
+
+## 1.可通过`git config`指令直接进行设置
+### git lg == git log
+
+`git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"`
+
+## 2.可通过添加.gitconfig文件配置
+
+在项目或者用户目录文件夹下创建一个.gitconfig文件，按照下列格式为想要的指令添加alias
+
+[alias]
+    bc = branch
+    ck = checkout
+    st = status
+    cm = commit
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+
+更详细的教学可自行百度或者查看[廖雪峰的官方网站][git alias]
+
+[git alias]: https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375234012342f90be1fc4d81446c967bbdc19e7c03d3000

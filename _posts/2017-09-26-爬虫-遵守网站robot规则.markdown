@@ -1,0 +1,32 @@
+---
+ layout: post
+ title: 爬虫-遵守网站robot规则
+ date: 2017-09-26 05:45:57
+ categories: spider
+---
+
+在编写爬虫爬取某网站内容的时候，首先应该去看一下此网站根目录下的robots.txt文件内，此网站关于爬虫爬取索要遵循的规定。
+下面是知乎的robots.txt文件内容
+
+```
+# 禁止今日头条和悟空问答爬虫抓取知乎网站内容
+User-agent: *
+Request-rate: 1/2 # load 1 page per 2 seconds
+Crawl-delay: 10
+
+Disallow: /login
+Disallow: /logout
+Disallow: /resetpassword
+Disallow: /terms
+Disallow: /search
+Disallow: /notifications
+Disallow: /settings
+Disallow: /inbox
+Disallow: /admin_inbox
+Disallow: /*?guide*
+Disallow: /people/*
+```
+
+robots.txt文件中说明了不能被爬取的路径，已经爬虫爬取的频率。遵守此文件内的规则，从而不必触发网站的反爬策略，让爬虫更稳定一些
+
+而且从User-agent的限制中也可以看到，爬虫必须要在Headers里加一个User-agent去模拟浏览器

@@ -1,0 +1,84 @@
+---
+layout: post
+title: 本地使用多个github账号
+date: 2017-07-18 11:53:43
+categories: 未分类
+---
+
+在开发时难免会遇到，使用git向多个github账号的不同仓库提交代码。这时候需要配置ssh可以在使用git push/pull到对应的repository。
+
+## 1.generate different ssh key for different github account
+
+用每个注册github账号的邮箱生成ssh key
+
+`ssh-keygen -t rsa -C "email@domain.com`
+
+会出现下面的提示
+
+```
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/fwang-ext/.ssh/id_rsa):
+```
+
+在后面为每个ssh key起一个名字，记得要使用绝对路径, eg:`/Users/fwang-ext/.ssh/id_rsa_github1`. 如果只写文件名，生成的文件是在`~/`目录下。
+
+## 2.add ssh keys into ssh-agent
+
+生成不同的ssh key后，将每个key添加到ssh-agent中
+
+`ssh-add ~/.ssh/id_rsa_github1`
+
+## 3.set ssh config file
+
+在`~/.ssh/`目录下创建一个`config`文件, 按下列格式为每个github账号填写配置
+
+```
+Host github账号别名
+    HostName github.com
+    User git
+    IdentityFile ssh_key_path
+```
+eg:
+
+```
+Host name1
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa_name1
+
+Host name2
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa_name2
+```
+
+## 4.add ssh public key into github
+
+将对应的公钥内容添加到github账号里
+
+## 5.testing
+单个账号将ssh秘钥添加到github账号后，执行`ssh -T git@github.com`就会输出连通提示信息
+
+多个账号在进行测试的时候需要将`@`后面的内容改成config文件中`Host`起的新名字
+
+`ssh -T git@name1` or `ssh -T git@name2`
+
+## 6.clone repository
+
+用git clone将repository clone到本地的时候，对应的ssh地址也需要作出相应的改动
+
+单账号clone地址是： `git@github.com:youaccount/repo.git`
+
+多账号在进行clone时，要将`@`后面的`github.com`替换成起的`Host`新名字
+
+`git clone git@name1:youaccount/repo.git`
+
+
+### Troubleshooting
+1. 若是有天突然发现在另外一个repo里每次push都被拒绝，并且提示的是向另外一个github账号提交代码，操作不被允许。
+这时候，再次用ssh-add 指令把对应的id_rsa秘钥添加一次就行了
+
+2. 'could not open a connection to your authentication agent.', 若提示这个，[ssh-agent][ssh-agent]问题, 则执行下面的指令把ssh-agent启动`eval \`ssh-agent -s \` `
+
+
+[ssh-agent]: https://stackoverflow.com/questions/17846529/could-not-open-a-connection-to-your-authentication-agent

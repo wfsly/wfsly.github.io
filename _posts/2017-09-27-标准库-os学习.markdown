@@ -1,0 +1,37 @@
+---
+ layout: post
+ title: 标准库-os学习
+ date: 2017-09-27 07:09:34
+ categories: python
+---
+
+标准库都整不明白，谈何提高效率啊，很多时候，遇到某个问题，我们只能自己写语句实现，
+如果熟悉标注库，则可以先从里面找到合适的function去解决，而避免我们自己重复造轮子,
+与其自己写语句实现，不如用标准库里有的，这样也能让代码变的更优雅点，更Pythonic点。
+
+
+## os
+
+例如，现在有一个文件路径名`/home/jax/workspace/1234_567_8.jpg`, 现在想提取文件名。
+我们可能想到的就是分割字符串, 以'/'为分隔符，分割这个字符串，然后取出来最后一个元素
+
+```
+In : name = '/home/jax/workspace/1234_567_8.jpg'
+In : file_name = name.split('/')[-1]
+In : print file_name
+Out: 1234_567_8.jpg
+```
+
+但是标准库`os`提供了具有类似功能的方法，[os.path.split(path)][os.path.split], 函数会将path分割成一个
+元组(head, tail)，元组内只有两部分，tail是路径中最后一部分，即最后一个'/'以后的内容，
+而head则表示'/'之前的所有内容
+
+```
+In : import os
+In : name = '/home/jax/workspace/1234_567_8.jpg'
+In : print os.path.split(name)
+Out: ('/home/jax/workspace', '1234_567_8.jpg')
+In : file_name = os.path.split(name)[1]
+```
+
+[os.path.split]: https://docs.python.org/2.7/library/os.path.html?highlight=os%20path%20splitext#os.path.split

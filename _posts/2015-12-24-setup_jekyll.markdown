@@ -2,7 +2,7 @@
 layout: post
 title:  "ubuntu14.04下配置jekyll"
 date:   2015-12-24 21:26
-categories: jekyll使用
+categories: jekyll
 tags:    jekyll
 ---
 

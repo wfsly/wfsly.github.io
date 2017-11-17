@@ -1,0 +1,23 @@
+---
+layout: post
+title: 列表推导式-提取嵌套列表元素
+date: 2017-09-05 14:07:45
+categories: python
+---
+
+## 列表推导式——提取嵌套列表元素
+```
+input: a = [[1,2,3], [4,5,6], [7,8,9]]
+input: b = [num for inner_list in a for num in inner_list]
+input: print b
+output: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+用列表推导式的方式，先遍历第一层列表元素，然后再遍历列表元素里的元素
+
+所以当有3层列表嵌套的时候，只需要按照从外向内的顺序写推导式就可以
+```
+c = [[[1,2,3], [4,5,6], [7,8,9]], [[1,2,3], [4,5,6], [7,8,9]]]
+d = [num for first_level_list in c for second_level_list in first_level_list for num in second_level_list]
+
+```
