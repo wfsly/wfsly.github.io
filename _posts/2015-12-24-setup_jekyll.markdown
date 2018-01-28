@@ -6,9 +6,15 @@ categories: jekyll
 tags:    jekyll
 ---
 
-## 友情提示:下列方法仅供参考
+### 友情提示:下列方法仅供参考
 
-## 由于我在笔记本ubuntu下配置jekyll的时候,出现了不一样的情况,所以下面的配置方法暂时还存在问题.  
+
+#### 使用rbenv+build插件去安装管理系统的ruby环境
+参考链接[rbenv][rbenv_url]
+
+-----------------------2018.01.08 更新分割线---------------------------
+
+### 由于我在笔记本ubuntu下配置jekyll的时候,出现了不一样的情况,所以下面的配置方法暂时还存在问题.  
 
 1. 安装gem`sudo apt-get install rubygems`, 由于ubuntu14.04 提示"E: Package 'rubygems' has no installation candidate"错误，
 执行`sudo apt-get install rubygems-integration`指令
@@ -52,3 +58,6 @@ bundle install
     `sudo apt-get install nodejs`  
 
     完成之后,jekyll正常运行.
+
+
+[rbenv_url]:https://gorails.com/setup/ubuntu/14.04
